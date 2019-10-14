@@ -9,6 +9,7 @@ import HomeScreen from "../screens/Home";
 import PlaylistScreen from "../screens/Playlist";
 import Login from '../screens/Login';
 import AuthLoadingScreen from '../screens/AuthLoading';
+import CuentaScreen from '../screens/Usuario';
 
 const homeScreenStack = createStackNavigator({
   Home: {
@@ -25,16 +26,39 @@ const homeScreenStack = createStackNavigator({
   }
 });
 
+const cuentaScreenStack = createStackNavigator({
+  Cuenta: {
+    screen: CuentaScreen,
+    navigationOptions: {
+      title: "Cuenta Info"
+    }
+  }
+});
+
 
 const RootStack = createBottomTabNavigator(
   {
     Home: {
       screen: homeScreenStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarLabel: "Exit",
+        tabBarLabel: "Favoritos",
         tabBarIcon: ({ tintColor }) => (
           <Icon
-            name="exit-run"
+            name="heart-outline"
+            type="material-community"
+            size={30}
+            color={tintColor}
+          />
+        )
+      })
+    },
+    Cuenta: {
+      screen: cuentaScreenStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarLabel: "Cuenta",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon
+            name="account-circle-outline"
             type="material-community"
             size={30}
             color={tintColor}

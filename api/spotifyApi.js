@@ -111,3 +111,20 @@ export const fecthArtistInfo = (id) => {
     );
   })
 }
+
+export const UserInfo = () => {
+  return fetch("https://api.spotify.com/v1/me", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(({ display_name, images, uri, followers: { total: followers } }) => {
+      return {
+        display_name,
+        followers,
+        uri,
+        image: images.length ? images[0].url : ''
+      };
+    });
+};
